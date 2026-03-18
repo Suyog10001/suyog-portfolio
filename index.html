@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suyog Gadal Bishwokarma</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="academic">
+
+  <!-- OVERLAY -->
+  <div class="mode-overlay" id="modeOverlay"></div>
+
+  <!-- CURSOR (industry) -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+  <div class="scroll-bar" id="scrollBar"></div>
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo" id="navLogo">SGB / ACADEMIC</div>
+    <div class="nav-links">
+      <a href="#skills" class="hide-mobile">Skills</a>
+      <a href="#experience" class="hide-mobile">Experience</a>
+      <a href="#education" class="hide-mobile">Education</a>
+      <a href="#contact" class="hide-mobile">Contact</a>
+      <!-- MODE SWITCHER -->
+      <div class="mode-switcher" id="modeSwitcher">
+        <div class="mode-pill" id="modePill"></div>
+        <button class="mode-btn active" id="btnAcademic" onclick="setMode('academic')">🎓 Academic</button>
+        <button class="mode-btn" id="btnIndustry" onclick="setMode('industry')">⚡ Industry</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =============================================
+     HERO
+     ============================================= -->
+  <section id="hero">
+    <div class="hero-inner">
+
+      <!-- INDUSTRY eyebrow -->
+      <div class="hero-eyebrow industry-only">// Data Engineer & Cloud Specialist</div>
+
+      <!-- ACADEMIC badge -->
+      <div class="academic-only" style="margin-bottom:24px">
+        <div class="research-badge">
+          <div class="research-badge-dot"></div>
+          <span>MSc Applicant · Data Engineering & Computer Science · 2026</span>
+        </div>
+      </div>
+
+      <h1 class="hero-name glitch" data-text="Suyog Gadal Bishwokarma">
+        Suyog <span class="accent">Gadal</span> Bishwokarma
+      </h1>
+
+      <!-- Industry typing title -->
+      <div class="hero-role industry-only typing-cursor" id="typingTitle"></div>
+
+      <!-- Academic role -->
+      <div class="hero-role academic-only">
+        Data Engineer · Azure Specialist · ML Research · Kathmandu, Nepal
+      </div>
+
+      <!-- Industry desc -->
+      <p class="hero-desc industry-only">
+        Proactive IT professional specializing in large-scale data warehouses, ETL pipelines,
+        Azure cloud infrastructure, and full-stack development. CGPA 9.62 · 3+ years industry experience.
+      </p>
+
+      <!-- Academic desc -->
+      <p class="hero-desc academic-only">
+        Motivated computer science professional with a strong academic foundation (CGPA 9.62),
+        industry experience in data engineering and Microsoft Azure, and published research in
+        machine learning for healthcare. Seeking to deepen expertise through graduate studies in Germany.
+      </p>
+
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+        <a href="#experience" class="btn btn-outline">View Experience</a>
+        <!-- Academic extra button -->
+        <a href="#research" class="btn btn-outline academic-only">Research Interests</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num" data-target="962">0</div>
+          <div class="stat-label">CGPA / 1000</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" data-target="25">0</div>
+          <div class="stat-label">% Query Boost</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" data-target="30">0</div>
+          <div class="stat-label">% Faster Fixes</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" data-target="3">0</div>
+          <div class="stat-label">+ Years Exp</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+     RESEARCH INTERESTS (Academic)
+     ============================================= -->
+  <section id="research">
+    <div class="section-tag">// Research & Motivation</div>
+    <h2 class="section-heading">Why <span>Graduate School</span></h2>
+    <p class="section-sub">My academic and professional work has led me toward these core research domains, and
+      Germany's universities offer world-class programs to explore them further.</p>
+
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="research-icon">🧠</div>
+        <h3>Machine Learning & Healthcare AI</h3>
+        <p>My published research on stroke risk prediction using advanced ML techniques reflects a deep interest in
+          applying data science to real-world medical challenges. I aim to pursue further work at the intersection of
+          healthcare data and predictive modelling.</p>
+      </div>
+      <div class="research-card">
+        <div class="research-icon">🗄️</div>
+        <h3>Large-Scale Data Systems</h3>
+        <p>With hands-on experience optimizing data warehouses and ETL pipelines at enterprise scale, I am keen to study
+          the theoretical foundations behind distributed data systems, query optimization, and scalable cloud
+          architectures.</p>
+      </div>
+      <div class="research-card">
+        <div class="research-icon">☁️</div>
+        <h3>Cloud Engineering & DevOps</h3>
+        <p>Practical expertise in Microsoft Azure, CI/CD pipelines, and cloud security informs my interest in formal
+          study of cloud-native architectures, reliability engineering, and infrastructure-as-code methodologies.</p>
+      </div>
+      <div class="research-card">
+        <div class="research-icon">🔒</div>
+        <h3>Data Privacy & Security</h3>
+        <p>My Cisco cybersecurity certification and cloud security implementation experience point toward a growing
+          interest in data governance, GDPR compliance engineering, and secure data infrastructure design.</p>
+      </div>
+    </div>
+
+    <!-- Why Germany block -->
+    <div class="why-germany-block academic-only">
+      <div class="section-tag" style="margin-bottom:10px">// Why Germany</div>
+      <h3 style="font-size:20px;font-weight:700;margin-bottom:14px;font-family:inherit">
+        Targeting Germany's Top Technical Universities
+      </h3>
+      <p style="font-size:14px;color:var(--muted);line-height:1.85;max-width:720px">
+        Germany's engineering and computer science programs are globally recognised for their rigour, industry
+        integration, and research excellence. The strong culture of applied research — particularly at TU Munich, TU
+        Berlin, KIT, and RWTH Aachen — aligns directly with my goal to bridge data engineering practice with academic
+        depth. The internationally collaborative environment and the opportunity to contribute to European research
+        communities are compelling reasons for me to pursue my Masters there.
+      </p>
+      <div class="uni-tags">
+        <span class="uni-tag">TU Munich (TUM)</span>
+        <span class="uni-tag">TU Berlin</span>
+        <span class="uni-tag">KIT Karlsruhe</span>
+        <span class="uni-tag">RWTH Aachen</span>
+        <span class="uni-tag">LMU Munich</span>
+      </div>
+    </div>
+
+    <!-- Industry equivalent: quick highlights -->
+    <div class="why-germany-block industry-only" style="margin-top:32px">
+      <div class="section-tag" style="margin-bottom:10px">// What I Bring</div>
+      <p style="font-size:14px;color:var(--muted);line-height:1.85;max-width:720px">
+        A blend of strong academic fundamentals (CGPA 9.62), enterprise-scale data engineering experience,
+        cloud architecture expertise, and published ML research — ready to deliver on complex,
+        data-driven challenges from day one.
+      </p>
+    </div>
+  </section>
+
+  <!-- =============================================
+     SKILLS
+     ============================================= -->
+  <section id="skills">
+    <div class="section-tag">// Technical Arsenal</div>
+    <h2 class="section-heading">Core <span>Competencies</span></h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-title">Data Analytics & Warehousing</div>
+        <div class="skill-desc">Designing and optimizing large-scale data warehouse architectures with measurable
+          performance outcomes.</div>
+        <div class="skill-tags">
+          <span class="tag">ETL / ELT</span><span class="tag">SSIS</span><span class="tag">MSSQL</span><span
+            class="tag">Data Warehouse</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">☁️</div>
+        <div class="skill-title">Microsoft Azure</div>
+        <div class="skill-desc">End-to-end cloud solutions — from data streaming and app services to DevOps pipelines
+          and cloud security.</div>
+        <div class="skill-tags">
+          <span class="tag o">App Services</span><span class="tag o">Azure DevOps</span><span
+            class="tag o">CI/CD</span><span class="tag o">Cloud Security</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">💻</div>
+        <div class="skill-title">Programming</div>
+        <div class="skill-desc">Full-stack capabilities from backend data processing and console applications to modern
+          frontend development.</div>
+        <div class="skill-tags">
+          <span class="tag p">C#</span><span class="tag p">SQL</span><span class="tag p">JavaScript</span><span
+            class="tag p">React</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔬</div>
+        <div class="skill-title">Research & ML</div>
+        <div class="skill-desc">Applied machine learning research in healthcare, with focus on predictive modelling and
+          clinical risk assessment.</div>
+        <div class="skill-tags">
+          <span class="tag">ML / AI</span><span class="tag">Research Methods</span><span class="tag">Agile</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+     EXPERIENCE
+     ============================================= -->
+  <section id="experience">
+    <div class="section-tag">// Professional Journey</div>
+    <h2 class="section-heading">Work <span>Experience</span></h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">MAY 2025 — PRESENT</div>
+        <div class="timeline-company">FlexTecs Nepal</div>
+        <div class="timeline-role">ELT Developer · Jwagal, Kathmandu</div>
+        <ul class="timeline-points">
+          <li>Built and improved <strong>SSIS ETL pipelines</strong>, improving reliability of daily data workflows.
+          </li>
+          <li>Created <strong>C# console applications</strong> for data cleaning, reducing manual data preparation
+            overhead.</li>
+          <li>Optimized <strong>SQL queries and stored procedures</strong>, maintaining data consistency and accurate
+            reporting.</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">MAY 2022 — AUGUST 2024</div>
+        <div class="timeline-company">CG Infinity</div>
+        <div class="timeline-role">Consultant 1 · Noida, India</div>
+        <ul class="timeline-points">
+          <li>Optimized data warehouse workflows — <strong>25% improvement</strong> in query performance.</li>
+          <li>Led production troubleshooting — <strong>30% reduction</strong> in issue resolution time.</li>
+          <li>Streamlined <strong>Azure-based ETL pipelines</strong>, enhancing data reliability at enterprise scale.
+          </li>
+          <li>Implemented <strong>cloud security best practices</strong>, strengthening data integrity.</li>
+          <li>Mentored junior engineers in <strong>SQL, Azure, and data engineering</strong> best practices.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+     EDUCATION & RESEARCH
+     ============================================= -->
+  <section id="education">
+    <div class="section-tag">// Education & Research</div>
+    <h2 class="section-heading">Academic <span>Background</span></h2>
+
+    <div class="edu-block">
+      <div class="edu-badge">🎓</div>
+      <div class="edu-content">
+        <div class="edu-degree">B.E. Computer Science & Engineering</div>
+        <div class="edu-uni">Chitkara University, India &nbsp;·&nbsp; 2019 – 2023</div>
+        <div class="edu-gpa"><span>CGPA: 9.62 / 10</span></div>
+        <p style="margin-top:14px;font-size:13px;color:var(--muted);line-height:1.8;max-width:560px"
+          class="academic-only">
+          Strong foundation in algorithms, distributed systems, database management, software engineering, and applied
+          mathematics — directly relevant to advanced graduate study in computer science and data engineering.
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top:12px" class="section-tag">// Research Output</div>
+    <div class="paper-block">
+      <div class="paper-label">📄 Research Paper</div>
+      <div class="paper-title">Advanced Machine Learning Techniques for Enhanced Stroke Risk Prediction in Healthcare
+      </div>
+      <div class="paper-status">S.G. Bishwokarma · Status: Communicated (Under Review)</div>
+      <p style="margin-top:12px;font-size:13px;color:var(--muted);line-height:1.8;max-width:620px"
+        class="academic-only">
+        This work investigates the application of advanced machine learning methods to improve early stroke risk
+        identification in clinical datasets, contributing to the growing field of AI-assisted preventive healthcare.
+      </p>
+    </div>
+  </section>
+
+  <!-- =============================================
+     KEY HIGHLIGHTS / ACHIEVEMENTS
+     ============================================= -->
+  <section id="highlights">
+    <div class="section-tag">// Impact & Achievements</div>
+    <h2 class="section-heading">Measurable <span>Results</span></h2>
+    <div class="highlights-grid">
+      <div class="hcard">
+        <div class="hcard-label">PERFORMANCE</div>
+        <div class="hcard-title">Query Optimization</div>
+        <div class="hcard-metric" data-target="25">0<span style="font-size:18px">%</span></div>
+        <div class="hcard-metric-label">Improvement in query performance</div>
+        <p class="hcard-desc">Optimized complex data processing workflows in a large-scale enterprise data warehouse,
+          delivering measurable speed gains.</p>
+      </div>
+      <div class="hcard">
+        <div class="hcard-label">RELIABILITY</div>
+        <div class="hcard-title">Incident Resolution</div>
+        <div class="hcard-metric" data-target="30">0<span style="font-size:18px">%</span></div>
+        <div class="hcard-metric-label">Reduction in resolution time</div>
+        <p class="hcard-desc">Led production troubleshooting efforts, minimizing downtime and substantially improving
+          system availability.</p>
+      </div>
+      <div class="hcard">
+        <div class="hcard-label">RESEARCH</div>
+        <div class="hcard-title">ML Research Paper</div>
+        <div class="hcard-metric" style="font-size:22px;margin-bottom:6px">Submitted</div>
+        <div class="hcard-metric-label">Communicated for publication</div>
+        <p class="hcard-desc">Advanced ML for Stroke Risk Prediction — applying deep learning to clinical healthcare
+          datasets with real-world impact.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+     CERTIFICATIONS
+     ============================================= -->
+  <section id="certs">
+    <div class="section-tag">// Credentials</div>
+    <h2 class="section-heading">Certifications</h2>
+    <div class="cert-row">
+      <div class="cert-badge">
+        <div class="cert-logo">☁️</div>
+        <div>
+          <div class="cert-name">Azure Data Fundamentals</div>
+          <div class="cert-issuer">Microsoft Certified · December 2023</div>
+        </div>
+      </div>
+      <div class="cert-badge">
+        <div class="cert-logo">🔒</div>
+        <div>
+          <div class="cert-name">Cisco CyberSecurity Certification</div>
+          <div class="cert-issuer">Cisco · 2-Year Program</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+     CONTACT
+     ============================================= -->
+  <section id="contact">
+    <div class="section-tag" style="text-align:center">// Get In Touch</div>
+    <h2 class="contact-heading">
+      <span class="industry-only">Let's Build <span>Something</span></span>
+      <span class="academic-only">Open to <span>Opportunities</span></span>
+    </h2>
+    <p class="contact-sub industry-only">Open to data engineering, Azure cloud, and ETL roles globally.</p>
+    <p class="contact-sub academic-only">Seeking MSc positions in Computer Science / Data Engineering at German
+      universities for 2026/2027.</p>
+    <div class="contact-links">
+      <a href="mailto:suyoggadal1000@gmail.com" class="contact-link">✉ suyoggadal1000@gmail.com</a>
+      <a href="tel:+9779803863743" class="contact-link">📞 +977-9803863743</a>
+      <a href="#" class="contact-link">📍 Kathmandu, Nepal</a>
+    </div>
+  </section>
+
+  <footer id="footerEl">
+    © 2026 Suyog Gadal Bishwokarma &nbsp;·&nbsp; Data Engineer &nbsp;·&nbsp; Kathmandu, Nepal
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
