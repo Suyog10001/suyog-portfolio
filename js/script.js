@@ -16,19 +16,15 @@ function setMode(mode) {
     document.getElementById('btnAcademic').classList.toggle('active', mode === 'academic');
     document.getElementById('navLogo').textContent = mode === 'industry' ? 'SGB / PORTFOLIO' : 'SGB / ACADEMIC';
 
-    // Re-trigger scroll animations
-    document.querySelectorAll('.skill-card,.timeline-item,.hcard,.cert-badge,.edu-block,.paper-block').forEach(el => {
+    // Re-trigger scroll animations & counters
+    document.querySelectorAll('.skill-card,.timeline-item,.hcard,.cert-badge,.edu-block,.paper-block,.stat').forEach(el => {
       el.classList.remove('visible');
+      const hm = el.querySelector('.hcard-metric');
+      const sn = el.querySelector('.stat-num');
+      if (hm) { delete hm.dataset.animating; hm.innerHTML = '0<span style="font-size:18px">%</span>'; }
+      if (sn) { delete sn.dataset.animating; sn.textContent = '0'; }
+      observer.observe(el);
     });
-    setTimeout(checkVisibility, 100);
-
-    // Restart counters
-    document.querySelectorAll('.stat-num').forEach(el => {
-      el.textContent = '0';
-    });
-    setTimeout(() => {
-      document.querySelectorAll('.stat').forEach(el => animCounter(el.querySelector('.stat-num'), parseInt(el.querySelector('.stat-num').dataset.target)));
-    }, 400);
 
     overlay.classList.remove('flash');
   }, 180);
@@ -111,7 +107,8 @@ setTimeout(typeLoop, 1600);
    COUNTER ANIMATION
    ============================================= */
 function animCounter(el, target) {
-  if (!el) return;
+  if (!el || el.dataset.animating) return;
+  el.dataset.animating = 'true';
   let start = null;
   const dur = 1400;
   const step = ts => {
@@ -119,8 +116,8 @@ function animCounter(el, target) {
     const p = Math.min((ts-start)/dur, 1);
     const ease = 1 - Math.pow(1-p, 3);
     const val = Math.floor(ease * target);
-    // format 962 as 9.62
     if (target === 962) { el.innerHTML = (val/100).toFixed(2); }
+    else if (target === 25 || target === 30) { el.innerHTML = val + '<span style="font-size:18px">%</span>'; }
     else { el.innerHTML = val; }
     if (p < 1) requestAnimationFrame(step);
   };
@@ -130,32 +127,36 @@ function animCounter(el, target) {
 /* =============================================
    INTERSECTION OBSERVER
    ============================================= */
-function checkVisibility() {
-  const els = document.querySelectorAll('.skill-card,.timeline-item,.hcard,.cert-badge,.edu-block,.paper-block');
-  els.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.88 && !el.classList.contains('visible')) {
-      el.classList.add('visible');
-      if (el.classList.contains('hcard')) {
-        const m = el.querySelector('.hcard-metric');
+const observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      if (entry.target.classList.contains('hcard')) {
+        const m = entry.target.querySelector('.hcard-metric');
         if (m && m.dataset.target) animCounter(m, parseInt(m.dataset.target));
+      } else if (entry.target.classList.contains('stat')) {
+        const num = entry.target.querySelector('.stat-num');
+        if (num && num.dataset.target) animCounter(num, parseInt(num.dataset.target));
       }
+      obs.unobserve(entry.target);
     }
   });
+}, { threshold: 0.1 });
+
+function initObserver() {
+  document.querySelectorAll('.skill-card,.timeline-item,.hcard,.cert-badge,.edu-block,.paper-block,.stat').forEach(el => {
+    observer.observe(el);
+  });
+  
+  // Stagger items
+  document.querySelectorAll('.skill-card').forEach((el,i) => el.style.transitionDelay = i*0.08+'s');
+  document.querySelectorAll('.timeline-item').forEach((el,i) => el.style.transitionDelay = i*0.1+'s');
+  document.querySelectorAll('.hcard').forEach((el,i) => el.style.transitionDelay = i*0.1+'s');
+  document.querySelectorAll('.cert-badge').forEach((el,i) => el.style.transitionDelay = i*0.1+'s');
 }
 
-// Stagger skill cards
-document.querySelectorAll('.skill-card').forEach((el,i) => el.style.transitionDelay = i*0.08+'s');
-document.querySelectorAll('.timeline-item').forEach((el,i) => el.style.transitionDelay = i*0.1+'s');
-document.querySelectorAll('.hcard').forEach((el,i) => el.style.transitionDelay = i*0.1+'s');
-document.querySelectorAll('.cert-badge').forEach((el,i) => el.style.transitionDelay = i*0.1+'s');
-
-// Initial checks
-setTimeout(() => {
-  checkVisibility();
-  document.querySelectorAll('.stat').forEach(el => {
-    animCounter(el.querySelector('.stat-num'), parseInt(el.querySelector('.stat-num').dataset.target));
-  });
-}, 800);
-
-window.addEventListener('scroll', checkVisibility);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initObserver);
+} else {
+  initObserver();
+}
