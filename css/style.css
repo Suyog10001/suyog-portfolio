@@ -283,6 +283,20 @@ body.academic .cursor-trail {
 /* =============================================
    SHARED SECTION STYLES
    ============================================= */
+#main-content {
+   display: flex;
+   flex-direction: column
+}
+
+body.academic #hero { order: 1 }
+body.academic #education { order: 2 }
+body.academic #research { order: 3 }
+body.academic #skills { order: 4 }
+body.academic #experience { order: 5 }
+body.academic #highlights { order: 6 }
+body.academic #certs { order: 7 }
+body.academic #contact { order: 8 }
+
 section {
    position: relative;
    z-index: 1;
@@ -438,10 +452,7 @@ body.academic .hero-desc.academic-only {
 }
 
 body.academic .industry-only {
-   opacity: 0;
-   pointer-events: none;
-   position: absolute;
-   visibility: hidden
+   display: none !important
 }
 
 /* Academic-only elements */
@@ -450,10 +461,7 @@ body.academic .industry-only {
 }
 
 body.industry .academic-only {
-   opacity: 0;
-   pointer-events: none;
-   position: absolute;
-   visibility: hidden
+   display: none !important
 }
 
 body.academic .academic-only {
@@ -1542,6 +1550,11 @@ body.academic .mode-overlay {
 }
 
 @media(max-width:768px) {
+   .cursor,
+   .cursor-trail {
+      display: none !important
+   }
+
    section {
       padding: 80px 24px
    }
