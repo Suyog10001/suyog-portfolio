@@ -679,8 +679,8 @@ body.academic .research-card h3 {
    margin-bottom: 14px
 }
 
-/* Why Germany */
-.why-germany-block {
+/* Highlights */
+.highlight-block {
    background: var(--card);
    border: 1px solid var(--border);
    border-radius: 6px;
@@ -689,7 +689,7 @@ body.academic .research-card h3 {
    transition: all 0.4s
 }
 
-body.academic .why-germany-block {
+body.academic .highlight-block {
    border-left: 4px solid var(--accent)
 }
 
